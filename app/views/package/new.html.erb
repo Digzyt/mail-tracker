@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="well">
+    <h2>New Mail</h2>
+      <%= form_for(@package) do |f| %>
+        <div class="field form-group">
+          <%= f.label :destination%><br />
+          <%= f.select :destination, [['Internal','internal'],['External','external']], class: 'form-control' %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :type%><br />
+          <%= f.select :type, [['Envelope','envelop'],['Bag','bag']], class: 'form-control' %>
+        </div>
+        <div class ="field field-group">
+          <%= f.label :mail_number%><br/>
+          <%= f.text_field :mail_number, class:'form_control'%>
+        </div>
+        <div class="field form-group">
+          <%= f.label :description%><br />
+          <%= f.text_area :description,:placeholder => "Give a brief description of the mail",  class: 'form-control' %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :recipient_name %><br />
+          <%= f.text_field :recipient_name, :placeholder => "First Name Last Name",  class: 'form-control' %>
+        </div>
+        <div class="actions form-group">
+          <%= f.submit "Sign up", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+     </div>
+  </div>
+</div>
