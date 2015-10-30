@@ -1,7 +1,7 @@
 class CreatePackages < ActiveRecord::Migration
   def change
     create_table :packages do |t|
-      t.string :type
+      t.string :mail_type
       t.string :destination
       t.string :description
       t.string :mail_number
@@ -10,8 +10,8 @@ class CreatePackages < ActiveRecord::Migration
       t.datetime :received_date
       t.datetime :mail_room_date
       t.string :mail_room_status
-      t.string :direction
-      t.string :recipient_name
+      t.integer :recipient_id
+      t.integer :sender_id
       t.string :sender_name
 
       t.timestamps null: false

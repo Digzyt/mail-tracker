@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20151029172625) do
 
   create_table "packages", force: :cascade do |t|
-    t.string   "type"
+    t.string   "mail_type"
     t.string   "destination"
     t.string   "description"
     t.string   "mail_number"
@@ -23,20 +23,20 @@ ActiveRecord::Schema.define(version: 20151029172625) do
     t.datetime "received_date"
     t.datetime "mail_room_date"
     t.string   "mail_room_status"
-    t.string   "direction"
-    t.string   "recipient_name"
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
     t.string   "sender_name"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "staff_id"
-    t.string   "depertment",             default: "", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "depertment"
+    t.string   "role"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
