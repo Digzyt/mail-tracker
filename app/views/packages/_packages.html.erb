@@ -1,0 +1,21 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th><%=sortable "Type", "mail_type"%></td>
+            <th><%=sortable "Mail Number", "mail_number"%></td>
+            <th><%=sortable "Sent","sent_date"%></td>
+        <tr>
+        <% @package.each do |package|%>
+            <tr>
+                <td><%=package.mail_type%></td>
+                <td><%= package.mail_number %></td>
+                <td><%=package.sent_date%></td>
+                <td><%= link_to "View", package_path(package.id)%></td>
+            </tr>
+        <% end %>
+    </table>
+    <%= will_paginate @package %>
+</div>
