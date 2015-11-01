@@ -1,0 +1,5 @@
+<%if current_user.mailman? %>
+    <%=render 'mailroom'%>
+<%else%>
+    <%=render 'recipient'%>
+<% end %>

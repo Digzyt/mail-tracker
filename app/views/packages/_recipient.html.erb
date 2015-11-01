@@ -1,0 +1,16 @@
+<div class = "col-md-4 col-md-offset-4">
+    <%= form_for @package do |f| %>
+        <div class ="well">
+            <h3><%=@package.mail_number%></h3>
+            <p><%=@package.mail_type%></p>
+            <p><%=@package.description %></p>
+            <p><%=@package.status%></p>
+            <p><%=@package.sent_date%></p>
+            <p><%=@package.mail_room_date%></p>
+            <p><%=@package.mail_room_status%></p>
+            <p><%=@package.sender_name%></p> 
+            <%= f.submit "Received", class: 'btn btn-success',:method => :post %>
+            <%= link_to "Pending", packages_path,class: 'btn btn-info'%>
+        </div>
+    <%end%>
+</div>
