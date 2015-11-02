@@ -10,9 +10,12 @@ class CreatePackages < ActiveRecord::Migration
       t.datetime :received_date
       t.datetime :mail_room_date
       t.string :mail_room_status
+      t.string :mail_room_recipient
       t.string :recipient_user_name
       t.integer :sender_id
       t.string :sender_name
+      t.datetime :time_to_mailroom
+      t.datetime :time_toreceived
 
       t.timestamps null: false
     end

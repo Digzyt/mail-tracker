@@ -23,9 +23,12 @@ ActiveRecord::Schema.define(version: 20151029172625) do
     t.datetime "received_date"
     t.datetime "mail_room_date"
     t.string   "mail_room_status"
+    t.string   "mail_room_recipient"
     t.string   "recipient_user_name"
     t.integer  "sender_id"
     t.string   "sender_name"
+    t.datetime "time_to_mailroom"
+    t.datetime "time_toreceived"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end

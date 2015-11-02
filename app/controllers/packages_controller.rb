@@ -11,7 +11,10 @@ class PackagesController < ApplicationController
         @package.mail_number = rand(36**8).to_s(36)
         @package.sender_name = current_user.first_name + " " + current_user.last_name
         @package.sender_id = current_user.id
-        @package.sent_date = Time.now
+        d = Date.current
+        t = Time.now
+        dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec, t.local)
+        @package.sent_date = dt
     end
     def create
         @package = Package.new(package_params)
@@ -55,7 +58,7 @@ class PackagesController < ApplicationController
     
     private
     def package_params
-        params.require(:package).permit(:sender_name,:sent_date,:destination,:mail_type,:mail_number,:description,:status,:mail_room_date,:mail_room_status,:sender_id,:recipient_user_name)
+        params.require(:package).permit(:sender_name,:sent_date,:destination,:mail_type,:mail_number,:description,:status,:mail_room_date,:mail_room_status,:sender_id,:recipient_user_name,:time_to_mailroom,:time_toreceived,:mail_room_recipient)
     end
     def sort_column
         Package.column_names.include?(params[:sort]) ? params[:sort] : "mail_number"
