@@ -13,7 +13,11 @@
                 <td><%=package.mail_type%></td>
                 <td><%= package.mail_number %></td>
                 <td><%=package.sent_date%></td>
-                <td><%= link_to "Update", edit_package_path(package.id)%>
+                <%if package.status == "received"%>
+                    <td><%=link_to "View details",package_path(package.id)%></td>
+                <%else%>
+                    <td><%= link_to "Update", edit_package_path(package.id)%>
+                <%end%>
             </tr>
         <% end %>
     </table>

@@ -1,21 +1,23 @@
-<div class="jumbotron texxt-center">
-    <h1>Track your mail</h1>
-    <h3>View incoming and outgoin mail status and location.</h3>
+<div class="col-md-10 col-md-offset-1">
+    <div class="jumbotron text-center">
+        <h1>Track your mail</h1>
+        <h3>View incoming and outgoin mail status and location.</h3>
+    </div>
 </div>
 <div class="row">
     <% if user_signed_in? %>
-        <div class="col-md-6">
+        <div class="col-md-4 col-md-offset-1">
             <div class="well">
                     <h2 class= "text-center">Mail</h2>
-                    <p>Mails</p>
-                    <%=link_to "Create or track mail",packages_path,class: "btn btn-info btn-lg btn-block"%>
+                    <p class= "text-center">New mail to be tracked after posting</p>
+                    <%=link_to "Post mail",new_package_path,class: "btn btn-info btn-lg btn-block"%>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4 col-md-offset-2">
             <div class="well">
-                <h2 class= "text-center">Staff</h2>
-                <p>View staff profiles</p>
-                <%=link_to "Find staff",'#',class: "btn btn-warning btn-lg btn-block"%>
+                <h2 class= "text-center">Mail</h2>
+                <p class= "text-center">Search for and update mail status</p>
+                <%=link_to "Trace your mail",packages_path,class: "btn btn-warning btn-lg btn-block"%>
             </div>
         <% end %>
 </div>

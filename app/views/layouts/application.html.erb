@@ -4,10 +4,9 @@
   <title>Mail Tracker</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <%= csrf_meta_tags %>
-  <% if content_for?(:head) %>
-    <%= yield(:head) %>
-  <% end %>
+
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -20,8 +19,8 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to  root_path, class: 'navbar-brand' do %>
+        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
         Mail Track
-        <i class="fa fa-home"></i>
       <% end %>
     </div>
     <div class="collapse navbar-collapse" id="main-nav-collapse">

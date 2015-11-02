@@ -42,7 +42,7 @@ class PackagesController < ApplicationController
         if @package.update(package_params)
             ReceivedMailer.received_email(name,email).deliver
             flash[:success] = "Mail updated"
-            redirect_to packages_path
+            redirect_to root_path
         else
             render 'edit'
         end
