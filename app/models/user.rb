@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   def mailman?
-    self.role == "Mailroom"
+    self.role == "mailroom"
   end
   has_one :profile
   has_many :senders, :class_name => 'package', :foreign_key => 'sender_id'

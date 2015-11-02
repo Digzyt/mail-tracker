@@ -10,7 +10,7 @@ class CreatePackages < ActiveRecord::Migration
       t.datetime :received_date
       t.datetime :mail_room_date
       t.string :mail_room_status
-      t.integer :recipient_id
+      t.string :recipient_user_name
       t.integer :sender_id
       t.string :sender_name
 

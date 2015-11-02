@@ -1,3 +1,16 @@
+<script>
+  $(document).ready(function(){
+      var x = $("#package_mail_number").val();
+    $('#package_mail_type').change(function() {
+        if ($('#package_mail_type').val()=="bag"){
+          $("#package_mail_number").val('');}
+        else{
+          $("#package_mail_number").val(x);}
+        console.log(x)
+    })
+});
+</script>
+
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <div class="well">
@@ -13,11 +26,11 @@
         </div>
         <div class="field form-group">
           <%= f.label :destination%><br />
-          <%= f.select :destination, [['Internal','internal'],['External','external']], class: 'form-control' %>
+          <%= f.select :destination, [['Organization','organization'],['Other','other']], class: 'form-control' %>
         </div>
         <div class="field form-group">
           <%= f.label :mail_type%><br />
-          <%= f.select :mail_type, [['Envelope','envelop'],['Bag','bag']], class: 'form-control' %>
+          <%= f.select :mail_type, [['Envelope','envelope'],['Bag','bag']], class: 'form-control'  %>
         </div>
         <div class ="field field-group">
           <%= f.label :mail_number%><br/>
@@ -25,7 +38,7 @@
         </div>
         <div class="field form-group">
           <%= f.label :description%><br />
-          <%= f.text_area :description,:placeholder => "Give a brief description of the mail",  class: 'form-control' %>
+          <%= f.text_area :description,:placeholder => "Give a brief description of the mail content",  class: 'form-control' %>
         </div>
         <div class="actions form-group">
           <%= f.submit "Create", class: 'btn btn-success',:method => :post %>

@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
-  $("#packages th a, #packages .pagination a").live("click", function() {
+  $("#packages th a, #packages .pagination a").on("click", function() {
     $.getScript(this.href);
     return false;
   });

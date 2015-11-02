@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20151029172625) do
     t.datetime "received_date"
     t.datetime "mail_room_date"
     t.string   "mail_room_status"
-    t.integer  "recipient_id"
+    t.string   "recipient_user_name"
     t.integer  "sender_id"
     t.string   "sender_name"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "users", force: :cascade do |t|

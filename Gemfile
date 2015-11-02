@@ -32,7 +32,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #pagination through will paginate
 gem 'will_paginate', '~> 3.0.6'
-
+#pdf pdf generation with prawn
+gem 'prawn'
+#prawnto
+gem "prawnto_2", :require => "prawnto"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

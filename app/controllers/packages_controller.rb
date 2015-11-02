@@ -8,23 +8,33 @@ class PackagesController < ApplicationController
     
     def new
         @package = Package.new
+        @package.mail_number = rand(36**8).to_s(36)
         @package.sender_name = current_user.first_name + " " + current_user.last_name
+        @package.sender_id = current_user.id
         @package.sent_date = Time.now
     end
     def create
         @package = Package.new(package_params)
-        if @package.save
-            redirect_to'package/index'
+        if @package.save && @package.mail_type == "envelop"
+            redirect_to '/packages'
+        elsif @package.save && @package.mail_type == "bag"
+            redirect_to controller: 'packages', action: 'show', id: @package.id
         else
-            redirect_to 'package/new'
+            redirect_to '/packages/new'
         end
     end
     def edit
-        @package = Package.find(params[:package_id])
+        @package = Package.find(params[:id])
+        if current_user.mailman?
+            @package.mail_room_date = Time.now
+        else
+            @package.received_date = Time.now
+        end
+            
     end
 
     def update
-        @package = Package.find(params[:package_id])
+        @package = Package.find(params[:id])
         if @package.update(package_params)
             flash[:success] = "Mail updated"
             redirect_to packages_path
@@ -35,11 +45,20 @@ class PackagesController < ApplicationController
     
     def show
         @package = Package.find(params[:id])
+        respond_to do |format|
+            format.html
+            format.pdf do
+                pdf = Prawn::Document.new
+                pdf.text "Hello wprld"
+                send_data pdf.render
+            end
+        end
     end
-
+    
+    
     private
     def package_params
-        params.require(:package).permit(:sender_name,:sent_date,:destination,:mail_type,:mail_number,:description)
+        params.require(:package).permit(:sender_name,:sent_date,:destination,:mail_type,:mail_number,:description,:status,:mail_room_date,:mail_room_status,:sender_id,:recipient_user_name)
     end
     def sort_column
         Package.column_names.include?(params[:sort]) ? params[:sort] : "mail_number"

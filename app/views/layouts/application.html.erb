@@ -5,6 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% end %>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -24,6 +27,9 @@
     <div class="collapse navbar-collapse" id="main-nav-collapse">
       <div class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <div>
+              <li><%= current_user.email%></li>
+            </div>
             <%= button_to "Sign Out", destroy_user_session_path, :method=> :delete, class:"btn btn-primary navbar-btn"%>
           <% else %>
             <%=link_to "Log In",new_user_session_path, class:'btn btn-primary navbar-btn',method: :get%>
@@ -36,6 +42,7 @@
     </div><!-- /.navbar-collapse -->
   </div>
 </nav>
+<!--<div class="modal" style="display:none;"></div>-->
 
 <%= yield %>
 
