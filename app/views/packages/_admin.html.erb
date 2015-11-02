@@ -1,0 +1,30 @@
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th><%=sortable "Type", "mail_type"%></td>
+            <th><%=sortable "Mail Number", "mail_number"%></td>
+            <th><%=sortable "sent_date", "mail_number"%>
+            <th><%=sortable "Time to mailroom","time_to_mailroom"%></td>
+            <th><%=sortable "Time to receipient","time_toreceived"%></td>
+        <tr>
+        <% @package.each do |package|%>
+            <tr>
+                <td><%=package.mail_type%></td>
+                <td><%= package.mail_number %></td>
+                <td><%=package.sent_date%></td>
+                <%if package.mail_room_status != nil %>
+                    <td><%=package.time_to_mailroom%></td>
+                <%end%>
+                <%if package.status == "received"%>
+                    <td><%=package.time_toreceived%></td>
+                <%end%>
+            </tr>
+        <% end %>
+    </table>
+    <div id="page_links">
+        <%= will_paginate @package %>
+    </div>
+</div>
+<script>
+$('#page_links').html('<%=escape_javascript(will_paginate @package)%>');
+</script>

@@ -17,20 +17,22 @@ ActiveRecord::Schema.define(version: 20151029172625) do
     t.string   "mail_type"
     t.string   "destination"
     t.string   "description"
+    t.string   "depertment"
     t.string   "mail_number"
     t.string   "status"
     t.datetime "sent_date"
     t.datetime "received_date"
     t.datetime "mail_room_date"
     t.string   "mail_room_status"
-    t.string   "mail_room_recipient"
+    t.integer  "mail_room_recipientid"
     t.string   "recipient_user_name"
     t.integer  "sender_id"
+    t.integer  "recipient_id"
     t.string   "sender_name"
     t.datetime "time_to_mailroom"
     t.datetime "time_toreceived"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -3,7 +3,7 @@
         <div class ="well">
           <div class="field form-group">
               <%= f.label :mail_room_recipientid %><br />
-              <%= f.text :mail_room_recipientid,:value=> current_user.id, :readonly => "true", class: 'form-control' %>
+              <%= f.text_field :mail_room_recipientid,:value=> current_user.id, :readonly => "true", class: 'form-control' %>
           </div>
           <p><%=@package.sender_name%></p>
           <p><%=@package.mail_type%></p>
@@ -14,9 +14,9 @@
             <%= f.label :mail_room_date %><br />
             <%= f.date_select :mail_room_date, :value=> @package.mail_room_date,  class: 'form-control' %>
           </div>
-          <div class="field form-group">
+          <div class="field form-group", style = "visibility: hidden">
             <%= f.label :time_to_mailroom %><br />
-            <%= f.time_select :time_to_mailroom, :value=> @package.time_to_mailroom,:readonly => "true",  class: 'form-control' %>
+            <%= f.time_select :time_to_mailroom, :value=> @package.time_to_mailroom,  class: 'form-control' %>
           </div>
           <div class="field form-group">
             <%= f.label :mail_room_status%><br />

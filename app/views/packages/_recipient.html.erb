@@ -18,7 +18,7 @@
             <h3><%=@package.mail_number%></h3>
             <div class="field form-group">
               <%= f.label :recipient_id %><br />
-              <%= f.text :recipient_id,:value=> current_user.id, :readonly => "true", class: 'form-control' %>
+              <%= f.text_field :recipient_id,:value=> current_user.id, :readonly => "true", class: 'form-control' %>
             </div>
             <p><%=@package.mail_type%></p>
             <p><%=@package.description %></p>
@@ -28,8 +28,12 @@
             <p><%=@package.mail_room_status%></p>
             <p><%=@package.sender_name%></p>
             <div class="field form-group">
+              <%= f.label :received_date %><br />
+              <%= f.date_select :received_date, :value=> @package.time_toreceived, class: 'form-control' %>
+            </div>
+            <div class="field form-group", style = "visibility: hidden">
               <%= f.label :time_toreceived %><br />
-              <%= f.time_select :time_toreceived, :value=> @package.time_toreceived,:readonly => "true", class: 'form-control' %>
+              <%= f.time_select :time_toreceived, :value=> @package.time_toreceived, class: 'form-control' %>
             </div>
             <div class="field form-group">
               <%= f.label :status %><br />
