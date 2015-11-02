@@ -1,3 +1,17 @@
+<script>
+  $(document).ready(function(){
+      $("#submit_button").attr('disabled',true);
+    $('#package_status').change(function() {
+        if ($('#package_status').val()=="received"){
+          $("#submit_button").attr('disabled',false);
+            }
+        else{
+          $("#submit_button").attr('disabled',true);
+            }
+    })
+});
+</script>
+
 <div class = "col-md-4 col-md-offset-4">
     <%= form_for @package do |f| %>
         <div class ="well">
@@ -8,8 +22,12 @@
             <p><%=@package.sent_date%></p>
             <p><%=@package.mail_room_date%></p>
             <p><%=@package.mail_room_status%></p>
-            <p><%=@package.sender_name%></p> 
-            <%= f.submit "Received", class: 'btn btn-success',:method => :post %>
+            <p><%=@package.sender_name%></p>
+            <div class="field form-group">
+              <%= f.label :status %><br />
+              <%= f.select :status,[['Pending','pending'],['Received','received']], class: 'form-control' %>
+            </div>
+            <%= f.submit "Received", class: 'btn btn-success',:id=> 'submit_button' ,:method => :post%>
             <%= link_to "Pending", packages_path,class: 'btn btn-info'%>
         </div>
     <%end%>

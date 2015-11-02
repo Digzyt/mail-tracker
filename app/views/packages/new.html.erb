@@ -1,6 +1,6 @@
 <script>
   $(document).ready(function(){
-      var x = $("#package_mail_number").val();
+    var x = $("#package_mail_number").val();
     $('#package_mail_type').change(function() {
         if ($('#package_mail_type').val()=="bag"){
           $("#package_mail_number").val('');}
@@ -16,6 +16,10 @@
     <div class="well">
     <h2>New Mail</h2>
       <%= form_for(@package) do |f| %>
+        <div class="field form-group">
+          <%= f.label :sender_id %><br />
+          <%= f.text_field :sender_id, :value=> @package.sender_id, :readonly => "true",  class: 'form-control' %>
+        </div>
         <div class="field form-group">
           <%= f.label :sender_name %><br />
           <%= f.text_field :sender_name, :value=> @package.sender_name,  class: 'form-control' %>
