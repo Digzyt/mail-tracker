@@ -11,10 +11,10 @@ class PackagesController < ApplicationController
         @package.mail_number = rand(36**8).to_s(36)
         @package.sender_name = current_user.first_name + " " + current_user.last_name
         @package.sender_id = current_user.id
-        d = Date.current
-        t = Time.now
-        dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec, t.local)
-        @package.sent_date = dt
+        @d = Date.current
+        @t = Time.now
+        @dt = DateTime.new(@d.year, @d.month, @d.day, @t.hour, @t.min, @t.sec)
+        @package.sent_date = @dt
     end
     def create
         @package = Package.new(package_params)
