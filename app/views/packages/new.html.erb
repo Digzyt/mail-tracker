@@ -25,12 +25,20 @@
           <%= f.text_field :sender_name, :value=> @package.sender_name,  class: 'form-control' %>
         </div>
         <div class="field form-group">
+          <%= f.label :recipient_user_name %><br />
+          <%= f.text_field :recipient_user_name,  class: 'form-control' %>
+        </div>
+        <div class="field form-group">
           <%= f.label :sent_date %><br />
           <%= f.date_select :sent_date, :value=> @package.sent_date,  class: 'form-control' %>
         </div>
         <div class="field form-group">
           <%= f.label :destination%><br />
           <%= f.select :destination, [['Organization','organization'],['Other','other']], class: 'form-control' %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :depertment%><br />
+          <%= f.select :depertment, [['ICT','ict'],['Cooperate','cooperater'],['Legal','legal']], class: 'form-control' %>
         </div>
         <div class="field form-group">
           <%= f.label :mail_type%><br />

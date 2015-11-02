@@ -30,8 +30,12 @@ class PackagesController < ApplicationController
         @package = Package.find(params[:id])
         if current_user.mailman?
             @package.mail_room_date = Time.now
-        else
+            diff = (@package.sent_date-@package.mail_room_date)
+            @package.time_to_mailroom = '%d:%02d:%02d' % [ diff / 3600, (diff / 60) % 60, diff % 60 ]
+        elsif current_user.role == "other"
             @package.received_date = Time.now
+            diff = (@package.sent_date-@package.received_date)
+            @package.time_toreceived =  '%d:%02d:%02d' % [ diff / 3600, (diff / 60) % 60, diff % 60 ]
         end
             
     end
@@ -58,7 +62,7 @@ class PackagesController < ApplicationController
     
     private
     def package_params
-        params.require(:package).permit(:sender_name,:sent_date,:destination,:mail_type,:mail_number,:description,:status,:mail_room_date,:mail_room_status,:sender_id,:recipient_user_name,:time_to_mailroom,:time_toreceived,:mail_room_recipient)
+        params.require(:package).permit(:sender_name,:sent_date,:mail_room_recipientid,:recipient_id,:destination,:depertment,:mail_type,:mail_number,:description,:status,:mail_room_date,:mail_room_status,:sender_id,:recipient_user_name,:time_to_mailroom,:time_toreceived,:mail_room_recipient)
     end
     def sort_column
         Package.column_names.include?(params[:sort]) ? params[:sort] : "mail_number"

@@ -12,7 +12,11 @@
             <%= text_field_tag :search, params[:search] %>
             <%= submit_tag "Search", :name => nil %>
           </p>
-        <div id="packages"><%=render 'packages'%></div>
+        <%if current_user.admin?%>
+          <%=render 'admin'%>%>  
+        <%else%>  
+          <div id="packages"><%=render 'packages'%></div>
+        <%end%>
         <% end %>
     </div>
 </div>
