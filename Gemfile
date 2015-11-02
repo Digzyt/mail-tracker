@@ -38,7 +38,8 @@ gem 'prawn'
 gem "prawnto_2", :require => "prawnto"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+#pony to send mail
+gem "pony"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
