@@ -1,5 +1,10 @@
-<h3>Mail Number: <%=@package.mail_number%></h3>
-<p>Mail Type: <%=@package.mail_type%></p>
-<p>Description<%=@package.description %></p>
-<p><%=@package.sent_date%></p>
-<p><%=@package.sender_name%></p>
+<div class= "col-md-4 col-md-offset-4">
+    <div class="well">
+        <h3>Mail Number: <%=@package.mail_number%></h3>
+        <p>Mail Type: <%=@package.mail_type%></p>
+        <p>Description: <%=@package.description %></p>
+        <p><%=@package.sent_date%></p>
+        <p><%=@package.sender_name%></p>
+        <p><%= link_to "Printable Wayill(PDF)", package_path(@package, :format => 'pdf') %></p>
+    </div>
+</div>

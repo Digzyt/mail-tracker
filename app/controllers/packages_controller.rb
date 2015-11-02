@@ -3,7 +3,7 @@ class PackagesController < ApplicationController
     helper_method :sort_column, :sort_direction
 
     def index
-        @package = Package.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+        @package = Package.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page]).per_page(5)
     end
     
     def new
@@ -15,10 +15,10 @@ class PackagesController < ApplicationController
     end
     def create
         @package = Package.new(package_params)
-        if @package.save && @package.mail_type == "envelop"
-            redirect_to '/packages'
-        elsif @package.save && @package.mail_type == "bag"
+        if @package.save && @package.mail_type == "envelope" && @package.destination == "other"
             redirect_to controller: 'packages', action: 'show', id: @package.id
+        elsif @package.save && @package.destination == "organization"
+            redirect_to '/packages'
         else
             redirect_to '/packages/new'
         end
@@ -35,7 +35,12 @@ class PackagesController < ApplicationController
 
     def update
         @package = Package.find(params[:id])
+        sender_id = @package.sender_id
+        @sender = User.find(sender_id)
+        email = @sender.email
+        name = (current_user.first_name + " " + current_user.last_name)
         if @package.update(package_params)
+            ReceivedMailer.received_email(name,email).deliver
             flash[:success] = "Mail updated"
             redirect_to packages_path
         else
@@ -45,14 +50,6 @@ class PackagesController < ApplicationController
     
     def show
         @package = Package.find(params[:id])
-        respond_to do |format|
-            format.html
-            format.pdf do
-                pdf = Prawn::Document.new
-                pdf.text "Hello wprld"
-                send_data pdf.render
-            end
-        end
     end
     
     

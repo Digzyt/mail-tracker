@@ -17,5 +17,10 @@
             </tr>
         <% end %>
     </table>
-    <%= will_paginate @package %>
+    <div id="page_links">
+        <%= will_paginate @package %>
+    </div>
 </div>
+<script>
+$('#page_links').html('<%= escape_javascript(will_paginate @package) %>');
+</script>
