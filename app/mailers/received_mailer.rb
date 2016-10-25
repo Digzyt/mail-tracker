@@ -1,5 +1,5 @@
 class ReceivedMailer < ActionMailer::Base
-  default from: 'donyegon@gmail.com'
+  default from: 'example@gmail.com'
   def received_email(name, email)
     @name = name
     @email = email
